@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'blog/css/post.css' %}">
+<div class="page-title">
+    <h1>Latest Posts</h1>
+</div>
+
+<div class="container-post">
+    {% if limit > e %}
+        <form action="{% url 'blog-older' %}" method="POST" class="older-form">{% csrf_token %}
+            <input class="btn btn-dark older" type="submit" value="Older">
+        </form>
+    {% endif %}
+
+    {% if b > 0 %}
+        <form action="{% url 'blog-newer' %}" method="POST">{% csrf_token %}
+            <input class="btn btn-dark newer" type="submit" value="Newer">
+        </form>
+    {% endif %}
+
+    {% for posts in post %}
+        <div class="post">
+            <div class="post-img">
+                <img src="{% static 'blog/img/post.jpg' %}">
+            </div>
+            <div class="post-info">
+                <div class="post-date">
+                    <span>{{ posts.date_posted|date:"F d, Y" }} </span>
+                </div>
+                <h1 class="post-title">{{ posts.title }}</h1>
+                <p class="post-text">{{ posts.summary }}</p>
+                <a href="{{ posts.id }}" class="post-cta">Read more</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

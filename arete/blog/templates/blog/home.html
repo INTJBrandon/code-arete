@@ -1,0 +1,77 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="banner">
+        <video width="1920" height="1080" id=videoBG autoplay loop muted>
+                <source src="{% static 'blog/img/AI.mp4' %}" type="video/mp4">
+            </video>
+        <div class="container">
+            <div class="banner-content">
+                <h1>Catch Up with The Latest in Technolgy!</h1>
+                <span><strong>What's going on with tech?</strong></span>
+
+                <p>Wanting to Learn to program, know what's new in the technology industry or to get ideas for projects, this is your one-stop blog for all things code & technology <br><br>New blog posts every week! </p>
+
+                <strong><span><a href="{% url 'blog-posts' %}" class="btn-one">Read Posts</a></span></strong>
+            </div>
+        </div>
+    </div>
+    
+        
+    <div class="grid">
+        <div id="box" class="box box1"></div>
+        <div id="box2" class="box box2">
+            <h4>Follow Me On Social Media</h4>
+            <a href="#">
+                <img class="social" src="{% static 'blog/img/—Pngtree—instagram logo social media instagram_3572487.png' %}">
+            </a>
+            <a href="#">
+            <img class="social" src="{% static 'blog/img/—Pngtree—twitter icon logo_3560527.png' %}">
+            </a>
+        </div>
+        <div id="boxCenter" class="box boxCenter">
+            <h1 class="text-center heading">ἀρετή</h1>
+            <p class="text-center heading">"Ones Own Excellence of Character"</p>
+        </div>
+        <div id="box3" class="box box3">CodeArete is run by a Web/Software developer student for the purposes of documenting real coding projects that I’m currently undergoing and the issues I’ve run into with learning various frameworks, languages or just specific Computer Science concepts This isn’t run by a 4 year CS Grad student, but a person who has been self-taught for a year and a half. I still have so much to learn and this is to record my journey while also sharing relevant information for others wishing to go this route. This website is currently WIP and will have different content added through the months as I further my advancements as a programmer. A portfolio section will be added in the future to showcase previous projects I’ve done, either from clients, friends, family or for myself.   </div>
+        <div id="box4" class="box box4">
+            <h3>Sign Up Now</h3>
+            <p>Sign up to never miss a post!</p>
+            <div class="form-group">
+                <label for="signUpEmail">Email Address</label>
+                <input type="email" class="form-control" id="newsletterEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone.</small>
+                <button type="button" class="btn btn-primary">Sign Up!</button>
+            </div>
+        </div>
+    </div>
+    <div class="posts">
+        <div class="container">
+            <div class="small-heading">
+                <h1>Latest Posts</h1>
+            </div>
+            <div class="row">
+                {% for posts in post %}
+                    <div class="col posts-padding">
+                        <div class="card transition">
+                            <h2 class="datetime">{{ posts.date_posted|date:"F d, Y" }}</h2>
+                            <h2 class="author"><span>By | </span>{{ posts.author|capfirst }} <span>|</span></h2>
+                            <h2 class="transition">{{ posts.title }}</h2>
+                            
+                            <p>{{ posts.summary }}</p>
+                            <div class="cta-container transition"><a href="posts/{{ posts.id }}" class="cta">Read Post</a></div>
+                            <div class="card_circle transition"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="hidden">
+        <h2 id="hide">HELLO BIG WORLD</h2>
+    </div>
+{% endblock %}
